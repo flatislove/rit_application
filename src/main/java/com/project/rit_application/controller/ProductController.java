@@ -2,6 +2,7 @@ package com.project.rit_application.controller;
 
 import com.project.rit_application.model.Product;
 import com.project.rit_application.repository.ProductRepository;
+import com.project.rit_application.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,16 +15,18 @@ import java.util.List;
 public class ProductController {
 
     private final
-    ProductRepository productRepository;
+    ProductService productService;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping(value = "/hello")
     List<Product> readBookmark() {
-        return productRepository.findAll();
+        return productService.getAllProduct();
     }
+
+
 
 }
